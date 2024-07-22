@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: johassin < johassin@student.s19.be>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/17 15:35:09 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/22 15:13:26 by rpepi            ###   ########.fr       */
+/*   Created: 2023/10/16 11:36:58 by johassin          #+#    #+#             */
+/*   Updated: 2023/10/17 10:20:52 by johassin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "libft.h"
 
-char	*ft_strjoin_inter(char const *s1, char const *s2, char c)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	i;
 	size_t	j;
@@ -28,21 +28,13 @@ char	*ft_strjoin_inter(char const *s1, char const *s2, char c)
 	if (s2)
 		while (s2[j])
 			j++;
-	str = malloc(sizeof(char) * (i + j + 2));
+	str = malloc(sizeof(char) * (i + j + 1));
 	if (!str)
 		return (NULL);
 	while (i--)
 		str[k++] = *s1++;
-	str[k++] = c;
 	while (j--)
 		str[k++] = *s2++;
 	str[k] = '\0';
 	return (str);
-}
-
-int	ft_ismaj(int c)
-{
-	if (c >= 'A' && c <= 'Z')
-		return (1);
-	return (0);
 }

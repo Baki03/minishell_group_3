@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_class.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:49:53 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/19 16:45:31 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/22 14:36:23 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,6 @@ t_token	*init_token(void)
 	token->prev = NULL;
 	token->next = NULL;
 	return (token);
-}
-
-t_spaces	*init_spaces(char *content, int id)
-{
-	t_spaces	*spaces;
-
-	spaces = (t_spaces *)malloc(sizeof(t_spaces));
-	if (!spaces)
-		return (NULL);
-	spaces->content = content;
-	spaces->id = id;
-	return (spaces);
 }
 
 t_word	*init_word(char *content, int id)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:34:28 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/19 16:56:30 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/22 14:05:22 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	is_string(t_env *env, char *line, int i)
 	int	ret;
 
 	ret = 0;
-	if ((!is_separator(line, i)) || (is_dollar_word(env, line, i)))
+	if (!is_separator(line, i)) || (!is_redir(line, i)) 
 		ret = 1;
 	return (ret);
 }

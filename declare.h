@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   declare.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:28:40 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/17 13:33:51 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/22 14:36:28 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	connect_var(t_var *curr_var, t_var *next_var);
 /*parsing*/
 
 t_token	*init_token(void);
-t_spaces	*init_spaces(char *content, int id);
 t_word	*init_word(char *content, int id);
 t_cmd	*init_cmd(char *content, int id);
 
