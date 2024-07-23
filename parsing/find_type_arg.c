@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:43:05 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/22 14:46:13 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/23 13:20:39 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 
 int find_type_arg(t_env *env, char  *content)
 {
+	int index;
+
+	index = 0;
 	if (is_in_double_quote(content))
 	{
-		if (contain_dollar_word(content))
-			check_variable(content);
+		while (index < ft_strlen(content))
+		{
+			index = contain_dollar_word(content);
+			find_dollar_word(env, content, index-1);
+		}
 		return (4);
 	}
 	if (is_in_single_quote(content))
