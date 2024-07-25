@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:49:53 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/22 14:36:23 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 13:06:32 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ t_token	*init_token(void)
 	return (token);
 }
 
-t_word	*init_word(char *content, int id)
+t_string	*init_string(char *content, int id)
 {
-	t_word	*word;
+	t_string	*string;
 
-	word = (t_word *)malloc(sizeof(t_word));
-	if (!word)
+	string = (t_string *)malloc(sizeof(t_string));
+	if (!string)
 		return (NULL);
-	word->content = content;
-	word->id = id;
-	return (word);
+	string->content = content;
+	string->id = id;
+	return (string);
 }
 
 t_cmd	*init_cmd(char *content, int id)
@@ -51,4 +51,28 @@ t_cmd	*init_cmd(char *content, int id)
 	cmd->fd_out = STDOUT_FILENO;
 	cmd->pid = 0;
 	return (cmd);
+}
+
+t_flags	*init_flags(char *content, int id)
+{
+	t_flags	*flag;
+
+	flag = (t_flags *)malloc(sizeof(t_flags));
+	if (!flag)
+		return (NULL);
+	flag->id = id;
+	flag->content = content;
+	return (flag);
+}
+
+t_file	*init_file(char *name, int fd)
+{
+	t_file	*file;
+
+	file = (t_file *)malloc(sizeof(t_file));
+	if (!file)
+		return (NULL);
+	file->name = name;
+	file->fd = fd;
+	return (file);
 }

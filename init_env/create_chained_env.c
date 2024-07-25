@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   create_chained_env.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:44:13 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/17 12:45:34 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/25 13:07:47 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 void	add_var(t_env *env, char **env_variable)
-{	
+{
 	int		i;
 	char	*name;
 	char	*value;
@@ -30,75 +30,75 @@ void	add_var(t_env *env, char **env_variable)
 	}
 }
 
-t_var *add_variables_list(t_env *env, t_var *var)
+t_var	*add_variables_list(t_env *env, t_var *var)
 {
-    int index;
-    t_var *tmp;
+	int		index;
+	t_var	*tmp;
 
-    index = 0;
-    if (!env->first_var)
-    {
-        var->index = index;
-        env->first_var = var;
-    }
-    else
-    {
-        tmp = env->first_var;
-        index++;
-        while (tmp->next)
-        {
-            index++;
-            tmp = tmp->next;
-        }
-        var->index = index;
-        tmp->next = var;
-        var->prev = tmp;
-    }
+	index = 0;
+	if (!env->first_var)
+	{
+		var->index = index;
+		env->first_var = var;
+	}
+	else
+	{
+		tmp = env->first_var;
+		index++;
+		while (tmp->next)
+		{
+			index++;
+			tmp = tmp->next;
+		}
+		var->index = index;
+		tmp->next = var;
+		var->prev = tmp;
+	}
 }
 
-char    *get_variable_name(char *variable)
+char	*get_variable_name(char *variable)
 {
-    int i;
-    int end;
-    int start;
-    char    *name;
-    
-    if (!variable)
-        return (NULL);
-    end = 0;
-    start = 0;
-    while (variable[end])
-    { 
-        if (variable[end] == '=')
-        {
-            end = -1;
-            name = ft_malloc_substrcpy(variable, start, end);
-            return (name);
-        }
-        end++;
-    }
-    name = ft_malloc_substrcpy(variable, start, end);
-    return (name);
+	int		i;
+	int		end;
+	int		start;
+	char	*name;
+
+	if (!variable)
+		return (NULL);
+	end = 0;
+	start = 0;
+	while (variable[end])
+	{
+		if (variable[end] == '=')
+		{
+			end = -1;
+			name = ft_malloc_substrcpy(variable, start, end);
+			return (name);
+		}
+		end++;
+	}
+	name = ft_malloc_substrcpy(variable, start, end);
+	return (name);
 }
 
-char    *get_variable_value(char    *variable)
+char	*get_variable_name(char *variable)
 {
-    int     end;
-    int     start;
-    char    *val;
+	int		end;
+	int		start;
+	char	*val;
 
-    if (!variable)
-        return (NULL);
-    end = 0;
-    start = 0;
-    while (variable[end])
-    {
-        if ((variable[end] == '=') && (end + 1 != '\0'))
-            start = end + 1;
-        end++;
-    }
-    val = ft_malloc_substrcpy(variable, start, end);
-    return (val);
+	if (!variable)
+		return (NULL);
+	end = 0;
+	start = 0;
+	while (variable[end])
+	{
+		if ((variable[end] == '=') && (end + 1 != '\0'))
+			start = end + 1;
+		end++;
+	}
+	val = ft_malloc_substrcpy(variable, start, end);
+	return (val);
 }
 
 void	connect_var(t_var *curr_var, t_var *next_var)

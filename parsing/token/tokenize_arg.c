@@ -3,47 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_arg.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 11:49:49 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/19 16:42:32 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/25 12:32:18 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int check_variable(t_env *env, char *content)
+void	init_args_type(char *content, int type, t_token *token)
 {
-	int i;
-	
-	i = 0;
-	if (is_in_single_quote(content))
-		return (0);
-	while (content[i])
+	int	fd;
+
+	fd = 0;
+	if (type == 4 || type == 3 || type == 2)
+		token->class = init_word(content, type);
+	if (type == 9)
+		token->class = init_flags(content, type);
+	if (type == 12)
 	{
-		if (is_var(content[i]))
-		{
-			echange_var(env, content, i);
-			return (1);
-		}
-		i++;
+		fd = open(content, O_RDONLY | O_WRONLY | O_CREAT, 0777);
+		if (fd < 0)
+			ft_printf("%s : so such file or directory\n", name);
+		token->class = init_file(content, fd);
 	}
-	return (0);
 }
 
-void    tokenize_arg(t_env *env, char *content)
+void	tokenize_arg(t_env *env, char *content)
 {
-	int     type;
+	int		type;
 	t_token	*token;
-	
+	int		index;
+
 	if (!content)
 	{
 		env->error_in_parsing = 1;
 		return ;
 	}
-	type = find_type_arg(env, content);
+	index = 0;
+	type = find_type_arg(env, content, index);
 	token = init_token();
 	token->id = type;
-	token->class = init_cmd(content, type);
+	init_args_type(content, type, token);
 	add_token_list(env, token);
 }

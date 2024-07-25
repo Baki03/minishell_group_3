@@ -6,16 +6,16 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 12:24:22 by rpepi             #+#    #+#             */
-/*   Updated: 2024/07/23 13:48:03 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 13:28:55 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int check_if_var(t_env *env, char *name)
+static int	check_if_var(t_env *env, char *name)
 {
-	t_var *curr_var;
-	
+	t_var	*curr_var;
+
 	curr_var = env->first_var;
 	while (curr_var->next)
 	{
@@ -26,29 +26,30 @@ int check_if_var(t_env *env, char *name)
 	return (0);
 }
 
-char *split_and_write(char *content, char *value, int start, int end)
+static char	*split_and_write(char *content, char *value, int start, int end)
 {
-	char *first_part;
-	char *second_part;
-	char *new_content;
-	
-	first_part = ft_malloc_substrcpy(content, 0, start-1);
-	second_part = ft_malloc_substrcpy(content, end+1, ft_strlen(content));
+	char	*first_part;
+	char	*second_part;
+	char	*new_content;
+
+	first_part = ft_malloc_substrcpy(content, 0, start - 1);
+	second_part = ft_malloc_substrcpy(content, end + 1, ft_strlen(content));
 	new_content = ft_strjoin_inter_str(first_part, second_part, value);
-	
 	free(value);
 	free(first_part);
 	free(second_part);
 	return (new_content);
 }
 
-int replace_var(t_env *env, char *content, char *name, int start, int end)
+static int	replace_var(t_env *env, char *content, int start, int end)
 {
-	t_var *curr_var;
-	char *value;
+	t_var	*curr_var;
+	char	*value;
 	char	*tmp_content;
-	int new_index;
-	
+	int		new_index;
+	char	*name;
+
+	name = ft_malloc_substrcpy(content, start, end);
 	curr_var = env->first_var;
 	tmp_content = ft_malloc_strcpy(content);
 	while (curr_var->next)
@@ -58,28 +59,27 @@ int replace_var(t_env *env, char *content, char *name, int start, int end)
 		curr_var = curr_var->next;
 	}
 	value = ft_malloc_strcpy(curr_var->value);
-	if (!value)
-		return (0);
 	content = split_and_write(tmp_content, value, start, end);
 	new_index = start - 1 + ft_strlen(value);
 	free(value);
+	free(name);
 	free(tmp_content);
 	return (new_index);
 }
 
-int find_dollar_word(t_env *env, char *content, int end)
+int	find_dollar_word(t_env *env, char *content, int end)
 {
-	int start;
-	int i;
+	int		start;
+	int		i;
 	char	*name;
-	int new_index;
+	int		new_index;
 
 	new_index = 0;
 	start = 0;
 	i = end;
 	while (i > 0)
 	{
-		if (content[i] = '$')
+		if (content[i] == '$')
 			start = i;
 		i--;
 	}
@@ -87,7 +87,7 @@ int find_dollar_word(t_env *env, char *content, int end)
 	if (!name)
 		return ;
 	if (check_if_var(env, name))
-		new_index = replace_var(env, content, name, start, end);
+		new_index = replace_var(env, content, start, end);
 	free(name);
 	return (new_index);
 }

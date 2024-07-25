@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:21:43 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/23 13:02:20 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 12:36:34 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,19 @@
 # define MINISHELL_H
 
 # include "declare.h"
-
-# include <stdio.h>
 # include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <stdlib.h>
-# include <stddef.h>
-# include <stdarg.h>
-# include <signal.h>
-# include <termios.h>
-# include <readline/readline.h>
 # include <readline/history.h>
+# include <readline/readline.h>
+# include <signal.h>
+# include <stdarg.h>
+# include <stddef.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <termios.h>
+# include <unistd.h>
 
 # define TOKEN_NULL 0
 # define TOKEN_BLANK 1
@@ -58,7 +56,7 @@ typedef struct s_token
 	int				id;
 	struct s_token	*next;
 	struct s_token	*prev;
-}   t_token;
+}					t_token;
 
 typedef struct s_cmd
 {
@@ -67,16 +65,7 @@ typedef struct s_cmd
 	int				fd_in;
 	int				fd_out;
 	pid_t			pid;
-}   t_cmd;
-
-typedef struct s_arg
-{
-	char			*content;
-	int				id;
-	struct s_arg	*next;
-	struct s_arg	*prev;
-	
-} t_arg;
+}					t_cmd;
 
 typedef struct s_var
 {
@@ -87,40 +76,47 @@ typedef struct s_var
 	struct s_var	*next;
 	struct s_var	*prev;
 
-}	t_var;
+}					t_var;
 
 typedef struct s_env
 {
-	char		**env_variable;
-	t_token		*first_token;
-	t_var		*first_var;
-	int			error_in_parsing;
+	char			**env_variable;
+	t_token			*first_token;
+	t_var			*first_var;
+	int				error_in_parsing;
 
-}	t_env;
+}					t_env;
 
 typedef struct s_file
 {
-	char	*name;
-	int		fd;
+	char			*name;
+	int				fd;
 
-}	t_file;
+}					t_file;
 
 typedef struct s_string
 {
 	int				id;
 	char			*content;
 
-}	t_string;
+}					t_string;
+
+typedef struct s_flags
+{
+	int				id;
+	char			*content;
+
+}					t_flags;
 
 typedef struct s_redir
 {
-	int		fd_in;
-	int		fd_out;
-	int		type;
-	char	*limiter;
-	t_file	*tmp_file;
-	char	*content;
+	int				fd_in;
+	int				fd_out;
+	int				type;
+	char			*limiter;
+	t_file			*tmp_file;
+	char			*content;
 
-}	t_redir;
+}					t_redir;
 
 #endif

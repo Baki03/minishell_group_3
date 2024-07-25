@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenize_cmd.c                                     :+:      :+:    :+:   */
+/*   connect.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/17 15:57:22 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 12:35:41 by rpepi            ###   ########.fr       */
+/*   Created: 2024/07/25 11:53:08 by rpepi             #+#    #+#             */
+/*   Updated: 2024/07/25 12:39:00 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static int	find_type_cmd(t_env *env, char *content)
+void	connect_token(t_token *curr_token, t_token *next_token)
 {
-	if (is_bin(env, content))
-		return (8);
-	if (is_built_in(content))
-		return (7);
-	return (0);
+	curr_token->next = next_token;
+	next_token->prev = curr_token;
 }
 
-void	tokenize_cmd(t_env *env, char *content)
+void	connect_var(t_var *curr_var, t_var *next_var)
 {
-	int		type;
-	t_token	*token;
-
-	if (!content)
-	{
-		env->error_in_parsing = 1;
-		return ;
-	}
-	type = find_type_cmd(env, content);
-	token = init_token();
-	token->id = type;
-	token->class = init_cmd(content, type);
-	add_token_list(env, token);
+	curr_var->next = next_var;
+	next_var->prev = curr_var;
 }

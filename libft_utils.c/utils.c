@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:35:09 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/23 13:41:30 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 13:05:04 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,19 @@ char	*ft_strjoin_inter(char const *s1, char const *s2, char c)
 	return (str);
 }
 
-char	*ft_strjoin_inter_str_code(char const *s1, char const *s2, char *content, int i, int j, int k, int l)
+static char	*ft_strjoin_inter_str_code(char const *s1, char const *s2,
+		char *content, int i)
 {
 	char	*str;
+	int		j;
+	int		k;
+	int		l;
 
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + ft_strlen(str) + 1));
+	j = 0;
+	k = 0;
+	l = 0;
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + ft_strlen(str)
+				+ 1));
 	if (!str)
 		return (NULL);
 	while (s1[i])
@@ -59,16 +67,11 @@ char	*ft_strjoin_inter_str_code(char const *s1, char const *s2, char *content, i
 
 char	*ft_strjoin_inter_str(char const *s1, char const *s2, char *content)
 {
-	size_t	i;
-	size_t	j;
-	size_t	k;
-	size_t	l;
+	int		i;
 	char	*str;
 
 	i = 0;
-	j = 0;
-	k = 0;
-	str = ft_strjoin_inter_str_code(s1, s2, content, i, j, k, l);
+	str = ft_strjoin_inter_str_code(s1, s2, content, i);
 	return (str);
 }
 
@@ -76,5 +79,12 @@ int	ft_ismaj(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (1);
+	return (0);
+}
+
+int	is_letter(char c)
+{
+	if (c >= 65 && c <= 90)
+		|| (c >= 97 && c <= 122) return (1);
 	return (0);
 }

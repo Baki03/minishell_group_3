@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   detection.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:18:12 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/19 17:03:01 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/25 12:42:05 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	double_quotes_detection(char *line, int index)
+static int	double_quotes_detection(char *line, int index)
 {
 	int	start;
 
@@ -27,7 +27,7 @@ int	double_quotes_detection(char *line, int index)
 	return (start);
 }
 
-int	single_quotes_detection(char *line, int index)
+static int	single_quotes_detection(char *line, int index)
 {
 	int	start;
 

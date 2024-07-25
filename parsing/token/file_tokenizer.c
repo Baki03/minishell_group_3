@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_tokenizer.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:13:38 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/17 17:21:55 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/25 12:38:55 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_token	*create_token_file(char *name, int fd, int id)
 	return (token);
 }
 
-
 t_token	*file_tokenizer(char *name, int id)
 {
 	t_token	*token;
@@ -34,7 +33,6 @@ t_token	*file_tokenizer(char *name, int id)
 	token = create_token_file(name, fd, id);
 	return (token);
 }
-
 
 int	next_file_tokenizer(t_env *env, char *line, int index)
 {
@@ -51,6 +49,7 @@ int	next_file_tokenizer(t_env *env, char *line, int index)
 	add_token_list(env, token);
 	return (new_index);
 }
+
 int	arg_redirect_extraction(t_env *env, t_token *token, char *line, int index)
 {
 	if (is_token_basic_redirection(token))

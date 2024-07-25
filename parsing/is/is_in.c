@@ -3,43 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   is_in.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 11:56:02 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/19 17:36:57 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/25 12:55:41 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int is_in_double_quote(char *content)
+int	is_in_double_quote(char *content)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (is_double_quote(content[i]))
-    {
-        while (content[i])
-            i++;
-        if (is_double_quote(content[i-1]))
-            return (1);
-    }
-    return (0);
+	i = 0;
+	if (is_double_quote(content[i]))
+	{
+		while (content[i])
+			i++;
+		if (is_double_quote(content[i - 1]))
+			return (1);
+	}
+	return (0);
 }
 
-int is_in_single_quote(char *content)
+int	is_in_single_quote(char *content)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (is_single_quote(content[i]))
-    {
-        while (content[i])
-            i++;
-        if (is_single_quote(content[i-1]))
-            return (1);
-    }
-    return (0);
+	i = 0;
+	if (is_single_quote(content[i]))
+	{
+		while (content[i])
+			i++;
+		if (is_single_quote(content[i - 1]))
+			return (1);
+	}
+	return (0);
 }
 
 int	is_in_quotes(char *content)

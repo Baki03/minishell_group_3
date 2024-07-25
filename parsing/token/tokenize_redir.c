@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_redir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:09:00 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/17 17:26:29 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/23 14:08:09 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	redirection_detection(char *line, int index)
 	return (start);
 }
 
-int	type_of_redirect(char *content)
+static int	type_of_redirect(char *content)
 {
 	if (is_pipe(content, 0))
 		return (TOKEN_PIPE);
@@ -49,7 +49,7 @@ int	type_of_redirect(char *content)
 	return (0);
 }
 
-t_redir	*init_redirection(int type, char *content)
+static t_redir	*init_redirection(int type, char *content)
 {
 	t_redir	*redir;
 

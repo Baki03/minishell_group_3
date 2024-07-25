@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_cmd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:46:36 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/17 16:08:23 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/25 12:47:23 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,13 @@ int	is_bin(t_env *env, char *word)
 	return (0);
 }
 
-
 int	is_cmd(t_env *env, char *word)
 {
 	if (is_bin(env, word) || is_built_in(word))
-    {
-        free(word);
+	{
+		free(word);
 		return (1);
-    }
-    free(word);
+	}
+	free(word);
 	return (0);
 }

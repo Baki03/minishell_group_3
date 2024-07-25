@@ -6,15 +6,15 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 12:07:09 by rpepi             #+#    #+#             */
-/*   Updated: 2024/07/23 13:17:54 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 13:20:04 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int is_dollar_word(char	*content)
+int	is_dollar_word(char *content)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!content)
@@ -33,32 +33,22 @@ int is_dollar_word(char	*content)
 	return (1);
 }
 
-int find_new_index(char *content, int old_index)
+static int	contain_dollar_word_code(char *content)
 {
-	int index;
-
-	index = 0;
-	while ()
-}
-
-int contain_dollar_word(char	*content)
-{
-	int i;
-
-	i = 0;
 	while (content[i])
 	{
 		if (content[i] == '$')
 		{
 			i++;
-			if (is_spaces(content[i]) || is_meta_char(content[i]) || (is_double_quote()))
+			if (is_spaces(content[i]) || is_meta_char(content[i])
+				|| (is_double_quote()))
 				return (i);
 			while (content[i])
 			{
 				if (content[i] == '$')
 				{
 					content = delete_content(content);
-					return(i + 1);
+					return (i + 1);
 				}
 				if (is_spaces(content[i]) || is_meta_char(content[i]))
 				{
@@ -71,3 +61,10 @@ int contain_dollar_word(char	*content)
 	}
 }
 
+int	contain_dollar_word_code(char *content)
+{
+	int	i;
+
+	i = 0;
+	return (contain_dollar_word_code(content, i));
+}

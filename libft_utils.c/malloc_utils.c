@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:47:57 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/17 16:01:57 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/25 13:09:28 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ char	*ft_malloc_strcpy(char *origin)
 	return (str);
 }
 
-
 char	**ft_malloc_strcpy_array(char **origin)
 {
 	size_t	i;
@@ -56,7 +55,6 @@ char	**ft_malloc_strcpy_array(char **origin)
 	array[i] = 0;
 	return (array);
 }
-
 
 char	*ft_malloc_substrcpy(char *origin, int start, int end)
 {
