@@ -10,6 +10,7 @@ CFLAGS              = -Wall -Werror -Wextra -I $(INC_DIR)
 RM                  = rm -f
 
 COMMANDS_SRC        = main.c \
+                      check_input.c \
                       parsing/delete_content.c \
                       parsing/detection.c \
                       parsing/find_replace_arg.c \

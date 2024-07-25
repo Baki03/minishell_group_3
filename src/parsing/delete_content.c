@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:18:46 by rpepi             #+#    #+#             */
-/*   Updated: 2024/07/25 14:08:58 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 15:09:28 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*delete_content(char *content)
 	start = i;
 	while (content[i])
 	{
-		if (is_spaces(content[i]) || is_meta_char(content[i]))
+		if (is_spaces(content[i]) || is_metachar(content[i]))
 			end = i;
 		i++;
 	}
@@ -62,5 +62,6 @@ char	*delete_content(char *content)
 	if (!new_content)
 		return (NULL);
 	extract_new_content(content, new_content, start, end);
-	free(content) return (new_content);
+	free(content);
+	return (new_content);
 }

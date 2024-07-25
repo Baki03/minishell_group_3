@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:48:31 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 14:09:09 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 15:56:08 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,20 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	input = NULL;
-	env_tab = ft_malloc_strcpy_array(envp);
-	env = init_env(env_tab);
 	prompt(input);
 	if (!input)
 		return (EXIT_FAILURE);
-	tokenize_line(env, input);
-	if (env->error_in_parsing == 1)
+	if (!check_input(input))
 	{
 		free(input);
 		return (EXIT_FAILURE);
 	}
-	free(input);
+	env_tab = ft_malloc_strcpy_array(envp);
+	env = init_env(env_tab);
+	tokenize_line(env, input);
+	if (env->error_in_parsing == 1)
+		free(input);
+	free_token(env);
+	free_env(env);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 12:24:22 by rpepi             #+#    #+#             */
-/*   Updated: 2024/07/25 14:08:58 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 15:14:43 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	*split_and_write(char *content, char *value, int start, int end)
 	return (new_content);
 }
 
-static int	replace_var(t_env *env, char *content, int start, int end)
+int	replace_var(t_env *env, char *content, int start, int end)
 {
 	t_var	*curr_var;
 	char	*value;
@@ -85,7 +85,7 @@ int	find_dollar_word(t_env *env, char *content, int end)
 	}
 	name = ft_malloc_substrcpy(content, start, end);
 	if (!name)
-		return ;
+		return (0);
 	if (check_if_var(env, name))
 		new_index = replace_var(env, content, start, end);
 	free(name);

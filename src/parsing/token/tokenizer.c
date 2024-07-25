@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:34:28 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 14:08:29 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 15:36:16 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	tokenize_line(t_env *env, char *line)
 		}
 		if (is_redir(env, line, index))
 		{
-			index = class_redir(env, line, index);
+			return ;
+			//index = class_redir(env, line, index);//
 		}
 		index++;
 	}

@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:18:12 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 14:08:58 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 15:29:01 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,9 @@ int	string_detection(t_env *env, char *line, int index)
 		index++;
 	}
 	return (index);
+}
+
+int	file_detection(char *line, int index)
+{
+	
 }

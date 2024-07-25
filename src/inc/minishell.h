@@ -6,12 +6,14 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:21:43 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 14:17:54 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 15:55:16 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
+# include "../../libft/libft.h"
 
 # include <fcntl.h>
 # include <readline/history.h>
@@ -120,6 +122,7 @@ typedef struct s_redir
 
 /* main */
 int			main(int argc, char **argv, char **envp);
+int			check_input(char *input);
 
 /*libft utils*/
 void		free_dtab(char **tab);
@@ -150,7 +153,7 @@ void		extract_new_content(char *content, char *new_content, int start,
 char		*delete_content(char *content);
 int			string_detection(t_env *env, char *line, int index);
 int			find_dollar_word(t_env *env, char *content, int end);
-int			find_type_arg(t_env *env, char *content, int index);
+int			find_type_arg(t_env *env, char *content, size_t index);
 t_var		*get_first_env_var(t_env *env);
 char		*get_env_var_value(t_env *env, char *name);
 char		*get_env_var_name(t_env *env, char *name);
@@ -159,6 +162,7 @@ t_string	*init_string(char *content, int id);
 t_cmd		*init_cmd(char *content, int id);
 t_flags		*init_flags(char *content, int id);
 t_file		*init_file(char *name, int fd);
+int			replace_var(t_env *env, char *content, int start, int end);
 
 /* tokenize */
 void		tokenize_line(t_env *env, char *line);
@@ -184,7 +188,7 @@ int			is_built_in(char *content);
 int			is_bin(t_env *env, char *word);
 int			is_cmd(t_env *env, char *word);
 int			is_dollar_word(char *content);
-int			contain_dollar_word_code(char *content);
+int			contain_dollar_word(char *content);
 int			is_file(char *content);
 int			is_flag(char *content);
 int			is_in_double_quote(char *content);
