@@ -6,11 +6,11 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 17:15:52 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 12:54:56 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 14:08:29 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../../inc/minishell.h"
 
 int	is_flag(char *content)
 {

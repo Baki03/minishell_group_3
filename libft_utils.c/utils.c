@@ -6,11 +6,11 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:35:09 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 13:05:04 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 14:08:58 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../inc/minishell.h"
 
 char	*ft_strjoin_inter(char const *s1, char const *s2, char c)
 {

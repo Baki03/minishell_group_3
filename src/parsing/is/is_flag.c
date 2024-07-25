@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chain_tokens.c                                     :+:      :+:    :+:   */
+/*   is_flag.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/17 16:47:50 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/19 16:46:30 by pepi             ###   ########.fr       */
+/*   Created: 2024/07/19 17:15:52 by pepi              #+#    #+#             */
+/*   Updated: 2024/07/25 14:08:29 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../../inc/minishell.h"
 
-void	add_token_list(t_env *env, t_token *token)
+int	is_flag(char *content)
 {
-	t_token	*iter;
+	int	i;
 
-	if (!(env->first_token))
+	i = 0;
+	if (content[i] != '-')
+		return (0);
+	if ((content[i] == '-' && is_letter(content[i + 1]))
+		&& (is_letter(content[i + 2]) || content[i + 2] == '\0'))
 	{
-		env->first_token = token;
+		return (1);
 	}
 	else
-	{
-		iter = env->first_token;
-		while (iter->next)
-		{
-			iter = iter->next;
-		}
-		connect_token(iter, token);
-	}
+		return (0);
 }

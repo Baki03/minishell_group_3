@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_utils.c                                       :+:      :+:    :+:   */
+/*   connect.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/17 12:47:02 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 13:08:59 by rpepi            ###   ########.fr       */
+/*   Created: 2024/07/25 11:53:08 by rpepi             #+#    #+#             */
+/*   Updated: 2024/07/25 14:08:29 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../inc/minishell.h"
 
-void	ft_free_dtab(char **tab)
+void	connect_token(t_token *curr_token, t_token *next_token)
 {
-	int	i;
+	curr_token->next = next_token;
+	next_token->prev = curr_token;
+}
 
-	if (!(tab))
-		return ;
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		tab[i] = NULL;
-		i++;
-	}
-	free(tab);
+void	connect_var(t_var *curr_var, t_var *next_var)
+{
+	curr_var->next = next_var;
+	next_var->prev = curr_var;
 }

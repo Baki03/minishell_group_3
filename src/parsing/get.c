@@ -6,11 +6,11 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:51:18 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 13:08:52 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 14:08:58 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../inc/minishell.h"
 
 t_var	*get_first_env_var(t_env *env)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   is_bins.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:48:57 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/17 15:51:09 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/25 14:07:48 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../../inc/minishell.h"
 
 char	**get_env_bins(t_env *env)
 {

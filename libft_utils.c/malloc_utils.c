@@ -6,11 +6,11 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:47:57 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 13:09:28 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 14:08:58 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../inc/minishell.h"
 
 static size_t	col_count(char **str)
 {

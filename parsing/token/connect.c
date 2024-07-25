@@ -6,11 +6,11 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 11:53:08 by rpepi             #+#    #+#             */
-/*   Updated: 2024/07/25 12:39:00 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 14:08:29 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../../inc/minishell.h"
 
 void	connect_token(t_token *curr_token, t_token *next_token)
 {

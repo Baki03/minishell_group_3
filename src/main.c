@@ -6,20 +6,20 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:48:31 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/23 14:00:41 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/25 14:09:09 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "inc/minishell.h"
 
-static void	*prompt(t_env *env, char *input)
+static void	*prompt(char *input)
 {
 	while (1)
 	{
 		input = readline("\033[1;32mminishell $ \033[0m");
 		if (!input)
 		{
-			ft_printf("exit\n");
+			printf("exit\n");
 			return (NULL);
 		}
 		if (input[0] == '\0')
@@ -37,9 +37,10 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
+	input = NULL;
 	env_tab = ft_malloc_strcpy_array(envp);
 	env = init_env(env_tab);
-	prompt(env, input);
+	prompt(input);
 	if (!input)
 		return (EXIT_FAILURE);
 	tokenize_line(env, input);
