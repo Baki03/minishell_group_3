@@ -6,7 +6,8 @@ SRC_DIR             = src/
 OBJ_DIR             = obj/
 
 CC                  = gcc
-CFLAGS              = -Wall -Werror -Wextra -I $(INC_DIR)
+CFLAGS              = -Wall -Werror -Wextra -I$(INC_DIR) -I/usr/local/opt/readline/include
+LDFLAGS             = usr/local/opt/readline/lib -lreadline
 RM                  = rm -f
 
 COMMANDS_SRC        = main.c \
@@ -27,6 +28,7 @@ COMMANDS_SRC        = main.c \
                       parsing/token/tokenizer.c \
                       parsing/is/is_bins.c \
                       parsing/is/is_cmd.c \
+                      parsing/is/is_token_basic_redir.c \
                       parsing/is/is_dollar_word.c \
                       parsing/is/is_file.c \
                       parsing/is/is_flag.c \
@@ -42,6 +44,7 @@ COMMANDS_SRC        = main.c \
                       libft_utils/free_utils.c \
                       libft_utils/malloc_utils.c \
                       libft_utils/utils.c \
+                      libft_utils/utils_2.c \
                       init_env/init_env.c \
                       init_env/create_chained_env.c
 
@@ -58,7 +61,7 @@ $(OBJ_DIR)/%.o:     $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME):            $(LIBFT) $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	@$(CC) $(OBJS) $(LIBFT) $(LDFLAGS) -o $(NAME)
 
 clean:
 	@$(RM) -r $(OBJ_DIR)

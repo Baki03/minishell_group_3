@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:13:38 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 15:27:37 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/29 12:44:37 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ int	next_file_tokenizer(t_env *env, char *line, int index)
 
 	if (line[index] == '\0')
 		return (index);
-	index = spaces_escape(line, index);
-	new_index = file_detection(line, index);
+	new_index = index;
+	index = find_file_index(line, index, new_index);
+	new_index = file_end_detection(line, index, new_index);
 	content = ft_malloc_substrcpy(line, index, new_index);
 	token = file_tokenizer(content, TOKEN_FILE);
 	add_token_list(env, token);
@@ -57,4 +58,22 @@ int	arg_redirect_extraction(t_env *env, t_token *token, char *line, int index)
 		index = next_file_tokenizer(env, line, ++index);
 	}
 	return (index);
+}
+
+int	find_file_index(char *line, int index, int new_index)
+{
+	int	i;
+
+	i = 0;
+	while (line[index])
+	{
+		if (!is_spaces(line[index]))
+		{
+			new_index = file_end_detection(line, index, new_index);
+			if (new_index != 0)
+				return (index);
+		}
+		i++;
+	}
+	return (0);
 }

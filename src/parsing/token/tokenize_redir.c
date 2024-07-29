@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:09:00 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 14:08:29 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/29 13:04:41 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	redirection_detection(char *line, int index)
 	start = index;
 	while (line[index])
 	{
-		if (!(is_redirection(line, index)))
+		if (!(is_redir(line, index)))
 		{
 			return (index - 1);
 		}
 		index++;
 	}
-	if (index == ft_strlen(line) && is_redirection(line, index -1))
+	if (index == ft_strlen_int(line) && is_redir(line, index -1))
 	{
 		return (index - 1);
 	}
@@ -71,7 +71,7 @@ t_token	*create_token_redir(char *line, int index, int new_index)
 	int		type;
 	t_token	*token;
 
-	content = malloc_substrcpy(line, index, new_index);
+	content = ft_malloc_substrcpy(line, index, new_index);
 	type = type_of_redirect(content);
 	token = init_token();
 	token->id = type;

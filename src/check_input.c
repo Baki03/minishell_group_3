@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 15:40:33 by rpepi             #+#    #+#             */
-/*   Updated: 2024/07/26 16:51:46 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/29 12:01:37 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/minishell.h"
 
-static int	check_open_quotes(char *input)
+int	check_open_quotes(char *input)
 {
 	int	i;
 	int	count;
@@ -39,6 +39,7 @@ static int	check_open_quotes(char *input)
 	return (1);
 }
 
+/*
 int	check_input(char *input)
 {
 	int	i;
@@ -48,10 +49,11 @@ int	check_input(char *input)
 	i = 0;
 	while (input[i])
 	{
-		if (input[i] == '\\' || input[i] == ';' || input[i] == '&&'
-			|| input[i] == '||')
+		if (input[i] == '\\' || input[i] == ';')
 			return (0);
+		if (input[i] == '&' && input[i + 1] = )
 		i++;
 	}
 	return (1);
 }
+*/

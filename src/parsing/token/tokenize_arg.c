@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 11:49:49 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 15:23:36 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/29 12:55:08 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ void	init_args_type(char *content, int type, t_token *token)
 
 	fd = 0;
 	if (type == 4 || type == 3 || type == 2)
-		token->class = init_word(content, type);
+		token->class = init_string(content, type);
 	if (type == 9)
 		token->class = init_flags(content, type);
 	if (type == 12)
 	{
 		fd = open(content, O_RDONLY | O_WRONLY | O_CREAT, 0777);
 		if (fd < 0)
-			printf("%s : so such file or directory\n", name);
+			printf("%s : so such file or directory\n", content);
 		token->class = init_file(content, fd);
 	}
 }

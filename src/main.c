@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:48:31 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/26 16:50:07 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/29 16:22:00 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/minishell.h"
 
-static void	*prompt(char *input)
+void	*prompt(char *input)
 {
 	while (1)
 	{
@@ -76,7 +76,7 @@ int	main(int argc, char **argv, char **envp)
 	prompt(input);
 	if (!input)
 		return (EXIT_FAILURE);
-	if (!check_input(input))
+	if (!check_open_quotes(input))
 	{
 		free(input);
 		return (EXIT_FAILURE);

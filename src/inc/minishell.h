@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:21:43 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/26 16:48:17 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/29 16:19:18 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,12 @@ typedef struct s_redir
 
 /* main */
 int			main(int argc, char **argv, char **envp);
+void		*prompt(char *input);
 int			check_input(char *input);
+int			check_open_quotes(char *input);
 
 /*libft utils*/
-void		free_dtab(char **tab);
+void		ft_free_dtab(char **tab);
 char		*ft_malloc_substrcpy(char *origin, int start, int end);
 char		*ft_malloc_strcpy(char *origin);
 char		**ft_malloc_strcpy_array(char **origin);
@@ -134,15 +136,16 @@ char		*ft_strjoin_inter_str(char const *s1, char const *s2,
 				char *content);
 int			ft_ismaj(int c);
 int			is_letter(char c);
+int			ft_strlen_int(char *str);
 
 /*init env*/
 t_env		*init_env(char **env_tab);
 t_var		*init_variable(char *name, char *value, int id);
 void		connect_var(t_var *curr_var, t_var *next_var);
 void		add_var(t_env *env, char **env_variable);
-t_var		*add_variables_list(t_env *env, t_var *var);
+void		add_variables_list(t_env *env, t_var *var);
 char		*get_variable_name(char *variable);
-char		*get_variable_name(char *variable);
+char		*get_variable_value(char *variable);
 
 /*parsing*/
 t_token		*init_token(void);
@@ -156,7 +159,7 @@ int			find_dollar_word(t_env *env, char *content, int end);
 int			find_type_arg(t_env *env, char *content, size_t index);
 t_var		*get_first_env_var(t_env *env);
 char		*get_env_var_value(t_env *env, char *name);
-char		*get_env_var_name(t_env *env, char *name);
+int			get_env_var_name(t_env *env, char *name);
 t_token		*init_token(void);
 t_string	*init_string(char *content, int id);
 t_cmd		*init_cmd(char *content, int id);
@@ -174,6 +177,8 @@ void		tokenize_arg(t_env *env, char *content);
 void		add_token_list(t_env *env, t_token *token);
 t_token		*create_token_file(char *name, int fd, int id);
 t_token		*file_tokenizer(char *name, int id);
+int			find_file_index(char *line, int index, int new_index);
+int			file_end_detection(char *line, int index, int new_index);
 int			next_file_tokenizer(t_env *env, char *line, int index);
 int			arg_redirect_extraction(t_env *env, t_token *token, char *line,
 				int index);
@@ -188,7 +193,7 @@ int			is_built_in(char *content);
 int			is_bin(t_env *env, char *word);
 int			is_cmd(t_env *env, char *word);
 int			is_dollar_word(char *content);
-int			contain_dollar_word(char *content);
+int			contain_dollar_word(t_env *env, char *content);
 int			is_file(char *content);
 int			is_flag(char *content);
 int			is_in_double_quote(char *content);
@@ -198,6 +203,7 @@ int			is_metachar(char c);
 int			is_pipe(char *line, int i);
 int			is_redir(char *line, int i);
 int			is_file_redirection(char *line, int i);
+int			is_token_basic_redirection(t_token *token);
 int			is_double_quote(char c);
 int			is_single_quote(char c);
 int			is_quote(char c);
@@ -220,4 +226,5 @@ int			is_word(char *content);
 void		free_tokens(t_token *token);
 void		free_env(t_env *env);
 void		free_var(t_var *var);
+
 #endif

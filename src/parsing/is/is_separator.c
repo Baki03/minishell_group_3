@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:46:28 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 14:08:29 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/29 15:57:54 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	is_separator(char *line, int i)
 {
 	if (!line[i])
 		return (0);
-	if (is_redirection(line, i) || is_spaces(line, i))
+	if (is_redir(line, i) || is_spaces(line[i]))
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:44:33 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 14:08:29 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/29 15:51:47 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_pipe(char *line, int i)
 {
-	if (index_is_over_flow(line, i))
+	if (!line[i])
 		return (0);
 	if (line[i] == '|' && line[i + 1] != '|')
 		return (1);

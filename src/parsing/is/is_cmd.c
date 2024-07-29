@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:46:36 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 14:08:29 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/29 15:35:56 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int	is_bin(t_env *env, char *word)
 		return (0);
 	else if (test_absolute_bin_access(word) || test_bin_access(bins, word))
 	{
-		free_darray(bins);
+		ft_free_dtab(bins);
 		return (1);
 	}
-	free_darray(bins);
+	ft_free_dtab(bins);
 	return (0);
 }
 

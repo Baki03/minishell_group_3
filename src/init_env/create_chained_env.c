@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:44:13 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 14:07:25 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/29 16:24:49 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	add_var(t_env *env, char **env_variable)
 	}
 }
 
-t_var	*add_variables_list(t_env *env, t_var *var)
+void	add_variables_list(t_env *env, t_var *var)
 {
 	int		index;
 	t_var	*tmp;
@@ -58,7 +58,6 @@ t_var	*add_variables_list(t_env *env, t_var *var)
 
 char	*get_variable_name(char *variable)
 {
-	int		i;
 	int		end;
 	int		start;
 	char	*name;
@@ -81,7 +80,7 @@ char	*get_variable_name(char *variable)
 	return (name);
 }
 
-char	*get_variable_name(char *variable)
+char	*get_variable_value(char *variable)
 {
 	int		end;
 	int		start;
@@ -99,10 +98,4 @@ char	*get_variable_name(char *variable)
 	}
 	val = ft_malloc_substrcpy(variable, start, end);
 	return (val);
-}
-
-void	connect_var(t_var *curr_var, t_var *next_var)
-{
-	curr_var->next = next_var;
-	next_var->prev = curr_var;
 }

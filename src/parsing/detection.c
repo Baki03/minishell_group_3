@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:18:12 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 15:29:01 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/29 12:41:15 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,28 @@ int	string_detection(t_env *env, char *line, int index)
 	return (index);
 }
 
-int	file_detection(char *line, int index)
+int	file_end_detection(char *line, int index, int new_index)
 {
-	
+	new_index = index;
+	while (line[new_index])
+	{
+		if (line[new_index] == '.')
+		{
+			if (line[new_index + 1] == '\0')
+				return (0);
+			if (!is_letter(line[new_index + 1]))
+				return (0);
+			while (line[new_index])
+			{
+				if (!is_letter(line[new_index])
+					|| !is_spaces(line[new_index]))
+					return (0);
+				if (is_spaces(line[new_index]))
+					return (new_index - 1);
+				new_index++;
+			}
+		}
+		new_index++;
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:47:57 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 14:07:38 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/29 16:08:33 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	**ft_malloc_strcpy_array(char **origin)
 	i = 0;
 	while (origin[i])
 	{
-		array[i] = malloc_strcpy(origin[i]);
+		array[i] = ft_malloc_strcpy(origin[i]);
 		i++;
 	}
 	array[i] = 0;

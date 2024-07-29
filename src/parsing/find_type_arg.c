@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:43:05 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 15:23:22 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/29 15:47:37 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	find_type_arg(t_env *env, char *content, size_t index)
 	{
 		while (index < ft_strlen(content))
 		{
-			index = contain_dollar_word(content);
+			index = contain_dollar_word(env, content);
 			find_dollar_word(env, content, index - 1);
 		}
 		return (4);

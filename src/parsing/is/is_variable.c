@@ -6,7 +6,7 @@
 /*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:49:32 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 14:08:29 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/29 16:04:30 by rpepi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	is_variable_word(char *line, int i)
 {
-	if (line[i] == '$' && !(is_blank(line[i + 1]))
-		&& !(is_finish(line[i + 1])) && !(is_quote(line[i + 1]))
+	if (line[i] == '$' && !(is_spaces(line[i + 1]))
+		&& line[i + 1] != '\0' && !(is_quote(line[i + 1]))
 		&& !(is_separator(line, i + 1)))
 		return (1);
 	return (0);
@@ -23,14 +23,12 @@ int	is_variable_word(char *line, int i)
 
 int	variable_exist(t_env *env, char *name)
 {
-	t_var	*var;
+	int	i;
 
-	var = get_env_var_name(env, name);
-	if (!var)
+	i = get_env_var_name(env, name);
+	if (i <= 0)
 		return (0);
-	if (ft_strncmp(var->name, name, ft_strlen(name)))
-		return (1);
-	return (0);
+	return (1);
 }
 
 char	*variable_name_extraction(char *line, int index)
