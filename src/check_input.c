@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 15:40:33 by rpepi             #+#    #+#             */
-/*   Updated: 2024/07/25 15:54:57 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/26 16:51:46 by pepi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,10 @@ int	check_input(char *input)
 	i = 0;
 	while (input[i])
 	{
-		if (input[i] == '\\' || input[i] == ';' || input[i] == "&&"
-			|| input[i] == "||")
+		if (input[i] == '\\' || input[i] == ';' || input[i] == '&&'
+			|| input[i] == '||')
 			return (0);
 		i++;
 	}
 	return (1);
 }
-

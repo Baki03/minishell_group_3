@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:48:31 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 15:56:08 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/26 16:50:07 by pepi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,41 @@ static void	*prompt(char *input)
 		{
 			add_history(input);
 		}
+	}
+}
+
+void	free_var(t_var *var)
+{
+	t_var	*temp;
+
+	while (var)
+	{
+		temp = var;
+		var = var->next;
+		if (temp->name)
+			free(temp->name);
+		if (temp->value)
+			free(temp->value);
+		free(temp);
+	}
+}
+
+void	free_env(t_env *env)
+{
+	int	i;
+
+	i = 0;
+	if (env)
+	{
+		if (env->env_variable)
+		{
+			while (env->env_variable[i] != NULL)
+				free(env->env_variable[i]);
+			free(env->env_variable);
+		}
+		if (env->first_var)
+			free_var(env->first_var);
+		free(env);
 	}
 }
 
@@ -51,7 +86,7 @@ int	main(int argc, char **argv, char **envp)
 	tokenize_line(env, input);
 	if (env->error_in_parsing == 1)
 		free(input);
-	free_token(env);
+	free_tokens(env->first_token);
 	free_env(env);
 	return (0);
 }

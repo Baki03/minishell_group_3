@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:21:43 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/25 15:55:16 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/26 16:48:17 by pepi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 
 # define TOKEN_NULL 0
 # define TOKEN_BLANK 1
-# define TOKEN_WORD 2
+# define TOKEN_STRING 2
 # define TOKEN_SINGLE_QUOTE 3
 # define TOKEN_DOUBLE_QUOTE 4
 # define TOKEN_PARANTHESIS 5
@@ -216,4 +216,8 @@ char		*variable_name_extraction(char *line, int index);
 int			is_variable(t_env *env, char *line, int i);
 int			is_word(char *content);
 
+/* free */
+void		free_tokens(t_token *token);
+void		free_env(t_env *env);
+void		free_var(t_var *var);
 #endif
