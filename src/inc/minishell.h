@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:21:43 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/29 16:19:18 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/30 13:38:13 by pepi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ typedef struct s_redir
 
 /* main */
 int			main(int argc, char **argv, char **envp);
-void		*prompt(char *input);
+void		*prompt(void);
 int			check_input(char *input);
 int			check_open_quotes(char *input);
 
@@ -226,5 +226,10 @@ int			is_word(char *content);
 void		free_tokens(t_token *token);
 void		free_env(t_env *env);
 void		free_var(t_var *var);
-
+void		ft_free(char *input, t_env *env, t_token *token);
+void		free_file(t_file *file);
+void		free_flags(t_flags *flags);
+void		free_redir(t_redir *redir);
+void		free_string(t_string *string);
+void		free_cmd(t_cmd *cmd);
 #endif

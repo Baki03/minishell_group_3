@@ -3,65 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:48:31 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/29 16:22:00 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/30 13:34:44 by pepi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/minishell.h"
 
-void	*prompt(char *input)
+void	*prompt(void)
 {
-	while (1)
+	char	*input;
+
+	input = readline("\033[1;32mminishell $ \033[0m");
+	if (!input)
 	{
-		input = readline("\033[1;32mminishell $ \033[0m");
-		if (!input)
-		{
-			printf("exit\n");
-			return (NULL);
-		}
-		if (input[0] == '\0')
-		{
-			add_history(input);
-		}
+		printf("exit\n");
+		return (NULL);
 	}
-}
-
-void	free_var(t_var *var)
-{
-	t_var	*temp;
-
-	while (var)
+	if (input[0] == '\0')
 	{
-		temp = var;
-		var = var->next;
-		if (temp->name)
-			free(temp->name);
-		if (temp->value)
-			free(temp->value);
-		free(temp);
+		add_history(input);
 	}
-}
-
-void	free_env(t_env *env)
-{
-	int	i;
-
-	i = 0;
-	if (env)
-	{
-		if (env->env_variable)
-		{
-			while (env->env_variable[i] != NULL)
-				free(env->env_variable[i]);
-			free(env->env_variable);
-		}
-		if (env->first_var)
-			free_var(env->first_var);
-		free(env);
-	}
+	return (input);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -72,21 +37,23 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	input = NULL;
-	prompt(input);
-	if (!input)
-		return (EXIT_FAILURE);
-	if (!check_open_quotes(input))
+	while (1)
 	{
-		free(input);
-		return (EXIT_FAILURE);
+		input = prompt();
+		if (!input)
+			return (EXIT_FAILURE);
+		if (!check_open_quotes(input))
+		{
+			free(input);
+			return (EXIT_FAILURE);
+		}
+		env_tab = ft_malloc_strcpy_array(envp);
+		env = init_env(env_tab);
+		tokenize_line(env, input);
+		if (env->error_in_parsing == 1)
+			ft_free(input, env, env->first_token);
+		else
+			printf("zeb");
+		return (0);
 	}
-	env_tab = ft_malloc_strcpy_array(envp);
-	env = init_env(env_tab);
-	tokenize_line(env, input);
-	if (env->error_in_parsing == 1)
-		free(input);
-	free_tokens(env->first_token);
-	free_env(env);
-	return (0);
 }

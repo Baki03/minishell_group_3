@@ -1,76 +1,76 @@
-NAME                = minishell
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/07/30 13:09:49 by pepi              #+#    #+#              #
+#    Updated: 2024/07/30 13:40:05 by pepi             ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-LIBFT               = ./libft/libft.a
-INC_DIR             = src/inc/
-SRC_DIR             = src/
-OBJ_DIR             = obj/
+NAME = 	minishell
 
-CC                  = gcc
-CFLAGS              = -Wall -Werror -Wextra -I$(INC_DIR) -I/usr/local/opt/readline/include
-LDFLAGS             = usr/local/opt/readline/lib -lreadline
-RM                  = rm -f
+SRC	= 	src/main.c \
+		src/free/free_class.c \
+        src/free/free_env.c \
+        src/check_input.c \
+		src/parsing/delete_content.c \
+        src/parsing/detection.c \
+        src/parsing/find_replace_arg.c \
+        src/parsing/find_type_arg.c \
+        src/parsing/get.c \
+        src/parsing/init_class.c \
+        src/parsing/token/chain_tokens.c \
+		src/parsing/token/connect.c \
+        src/parsing/token/file_tokenizer.c \
+        src/parsing/token/tokenize_arg.c \
+        src/parsing/token/tokenize_cmd.c \
+    	src/parsing/token/tokenize_redir.c \
+		src/parsing/token/tokenizer.c \
+        src/parsing/is/is_bins.c \
+        src/parsing/is/is_cmd.c \
+        src/parsing/is/is_token_basic_redir.c \
+    	src/parsing/is/is_dollar_word.c \
+		src/parsing/is/is_file.c \
+        src/parsing/is/is_flag.c \
+        src/parsing/is/is_in.c \
+        src/parsing/is/is_metachar.c \
+        src/parsing/is/is_pipe.c \
+        src/parsing/is/is_quote.c \
+        src/parsing/is/is_redir.c \
+        src/parsing/is/is_separator.c \
+        src/parsing/is/is_spaces.c \
+        src/parsing/is/is_variable.c \
+        src/parsing/is/is_word.c \
+        src/libft_utils/free_utils.c \
+        src/libft_utils/malloc_utils.c \
+        src/libft_utils/utils.c \
+    	src/libft_utils/utils_2.c \
+        src/init_env/init_env.c \
+        src/init_env/create_chained_env.c
 
-COMMANDS_SRC        = main.c \
-                      free.c \
-                      check_input.c \
-                      parsing/delete_content.c \
-                      parsing/detection.c \
-                      parsing/find_replace_arg.c \
-                      parsing/find_type_arg.c \
-                      parsing/get.c \
-                      parsing/init_class.c \
-                      parsing/token/chain_tokens.c \
-                      parsing/token/connect.c \
-                      parsing/token/file_tokenizer.c \
-                      parsing/token/tokenize_arg.c \
-                      parsing/token/tokenize_cmd.c \
-                      parsing/token/tokenize_redir.c \
-                      parsing/token/tokenizer.c \
-                      parsing/is/is_bins.c \
-                      parsing/is/is_cmd.c \
-                      parsing/is/is_token_basic_redir.c \
-                      parsing/is/is_dollar_word.c \
-                      parsing/is/is_file.c \
-                      parsing/is/is_flag.c \
-                      parsing/is/is_in.c \
-                      parsing/is/is_metachar.c \
-                      parsing/is/is_pipe.c \
-                      parsing/is/is_quote.c \
-                      parsing/is/is_redir.c \
-                      parsing/is/is_separator.c \
-                      parsing/is/is_spaces.c \
-                      parsing/is/is_variable.c \
-                      parsing/is/is_word.c \
-                      libft_utils/free_utils.c \
-                      libft_utils/malloc_utils.c \
-                      libft_utils/utils.c \
-                      libft_utils/utils_2.c \
-                      init_env/init_env.c \
-                      init_env/create_chained_env.c
+OBJ = $(SRC:.c=.o)
+LIBFT	= ./libft
+LIBFT_A = ./libft/libft.a
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
-SRCS                = $(addprefix $(SRC_DIR), $(COMMANDS_SRC))
-OBJS                = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)/%.o, $(SRCS))
+all: $(NAME)
 
-all:                $(NAME)
-
-$(LIBFT):
-	@make -C ./libft
-
-$(OBJ_DIR)/%.o:     $(SRC_DIR)/%.c
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) -c $< -o $@
-
-$(NAME):            $(LIBFT) $(OBJS)
-	@$(CC) $(OBJS) $(LIBFT) $(LDFLAGS) -o $(NAME)
+$(NAME): $(OBJ)
+	@make -C $(LIBFT)
+	$(CC) $(CFLAGS) $(LIBFT_A) -o $(NAME) $(OBJ) -lreadline
 
 clean:
-	@$(RM) -r $(OBJ_DIR)
-	@make clean -C ./libft
+	@make -C $(LIBFT) fclean
+	rm -f $(OBJ)
 
-fclean:             clean
-	@$(RM) $(NAME)
-	@make fclean -C ./libft
+fclean: clean
+	@make -C $(LIBFT) clean
+	rm -f $(NAME)
 
-re:                 fclean all
+re: fclean all
 
-.PHONY:             all clean fclean re
+.PHONY: all clean fclean re
