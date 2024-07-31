@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_redir.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 17:09:00 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/29 13:04:41 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/31 10:57:13 by pepi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ int	redirection_detection(char *line, int index)
 			return (index - 1);
 		}
 		index++;
-	}
-	if (index == ft_strlen_int(line) && is_redir(line, index -1))
-	{
-		return (index - 1);
 	}
 	return (start);
 }

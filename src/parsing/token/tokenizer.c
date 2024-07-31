@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:34:28 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/29 15:35:12 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/31 10:39:55 by pepi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ static int	is_string(char *line, int i)
 	int	ret;
 
 	ret = 0;
-	if (!is_separator(line, i)
-		|| !is_redir(line, i))
+	if (!is_separator(line, i))
 		ret = 1;
 	return (ret);
 }
@@ -54,8 +53,7 @@ void	tokenize_line(t_env *env, char *line)
 		}
 		if (is_redir(line, index))
 		{
-			return ;
-			//index = class_redir(env, line, index);//
+			index = class_redir(env, line, index);
 		}
 		index++;
 	}
