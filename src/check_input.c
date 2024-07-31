@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 15:40:33 by rpepi             #+#    #+#             */
-/*   Updated: 2024/07/29 12:01:37 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/31 10:30:11 by pepi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,21 @@
 int	check_open_quotes(char *input)
 {
 	int	i;
-	int	count;
+	int	single_quote_open;
+	int	double_quote_open;
 
-	count = 0;
+	single_quote_open = 0;
+	double_quote_open = 0;
 	i = 0;
 	while (input[i])
 	{
-		if (input[i] == '\'')
-			count++;
+		if (input[i] == '\'' && (i == 0 || input[i - 1] != '\\'))
+			single_quote_open = !single_quote_open;
+		else if (input[i] == '\"' && (i == 0 || input[i - 1] != '\\'))
+			double_quote_open = !double_quote_open;
 		i++;
 	}
-	if (count % 2 != 0)
-		return (0);
-	count = 0;
-	while (input[i])
-	{
-		if (input[i] == '\"')
-			count++;
-		i++;
-	}
-	if (count % 2 != 0)
+	if (single_quote_open || double_quote_open)
 		return (0);
 	return (1);
 }

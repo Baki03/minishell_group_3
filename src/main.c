@@ -6,7 +6,7 @@
 /*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:48:31 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/30 13:34:44 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/31 10:34:30 by pepi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,13 @@ int	main(int argc, char **argv, char **envp)
 		env = init_env(env_tab);
 		tokenize_line(env, input);
 		if (env->error_in_parsing == 1)
-			ft_free(input, env, env->first_token);
+		{
+			return (ft_free(input, env, env->first_token), 1);
+			printf("error");
+		}
 		else
 			printf("zeb");
+		free(input);
 		return (0);
 	}
 }
