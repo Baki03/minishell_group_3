@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:35:09 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/29 16:10:19 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/31 15:10:53 by pepi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static char	*ft_strjoin_inter_str_code(char const *s1, char const *s2,
 	j = 0;
 	k = 0;
 	l = 0;
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + ft_strlen(str)
-				+ 1));
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)
+				+ ft_strlen(content) + 1));
 	if (!str)
 		return (NULL);
 	while (s1[i])
@@ -84,8 +84,7 @@ int	ft_ismaj(int c)
 
 int	is_letter(char c)
 {
-	if ((c >= 65 && c <= 90)
-		|| (c >= 97 && c <= 122))
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
 		return (1);
 	return (0);
 }
