@@ -6,7 +6,7 @@
 /*   By: pepi <pepi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:48:31 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/31 10:34:30 by pepi             ###   ########.fr       */
+/*   Updated: 2024/07/31 10:37:22 by pepi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char **argv, char **envp)
 			printf("error");
 		}
 		else
-			printf("zeb");
+			printf("parsing success");
 		free(input);
 		return (0);
 	}
