@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   create_chained_env.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: johassin <johassin@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:44:13 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/29 16:24:49 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/08/01 13:01:23 by johassin         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../inc/minishell.h"
 
@@ -23,7 +23,9 @@ void	add_var(t_env *env, char **env_variable)
 	while (env_variable[i])
 	{
 		name = get_variable_name(env_variable[i]);
+		printf("name = %s\n", name);
 		value = get_variable_value(env_variable[i]);
+		printf("value = %s\n", value);
 		var = init_variable(name, value, 1);
 		add_variables_list(env, var);
 		i++;
@@ -59,24 +61,22 @@ void	add_variables_list(t_env *env, t_var *var)
 char	*get_variable_name(char *variable)
 {
 	int		end;
-	int		start;
 	char	*name;
 
 	if (!variable)
 		return (NULL);
 	end = 0;
-	start = 0;
 	while (variable[end])
 	{
 		if (variable[end] == '=')
 		{
-			end = -1;
-			name = ft_malloc_substrcpy(variable, start, end);
+			end -= 1;
+			name = ft_malloc_substrcpy(variable, 0, end);
 			return (name);
 		}
 		end++;
 	}
-	name = ft_malloc_substrcpy(variable, start, end);
+	name = ft_malloc_substrcpy(variable, 0, end);
 	return (name);
 }
 

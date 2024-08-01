@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpepi <rpepi@student.42.fr>                +#+  +:+       +#+        */
+/*   By: johassin <johassin@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:35:09 by pepi              #+#    #+#             */
-/*   Updated: 2024/07/29 16:10:19 by rpepi            ###   ########.fr       */
+/*   Updated: 2024/07/31 15:38:23 by johassin         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../inc/minishell.h"
 
@@ -51,7 +51,7 @@ static char	*ft_strjoin_inter_str_code(char const *s1, char const *s2,
 	j = 0;
 	k = 0;
 	l = 0;
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + ft_strlen(str)
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + ft_strlen(content)
 				+ 1));
 	if (!str)
 		return (NULL);
